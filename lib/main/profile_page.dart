@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,8 +10,31 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _searchController = TextEditingController();
-  List<String> profiles = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Emily Davis'];
-  List<String> recommendedProfiles = ['Alice Brown', 'David Wilson'];
+  final TextEditingController _nameController = TextEditingController();
+  List<String> profiles = [];
+  List<String> recommendedProfiles = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProfiles();
+  }
+
+  Future<void> fetchProfiles() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('profiles').get();
+
+    setState(() {
+      profiles = querySnapshot.docs.map((doc) => doc['name'] as String).toList();
+      recommendedProfiles = profiles.take(5).toList(); // 첫 5명을 추천 프로필로 설정
+    });
+  }
+
+  Future<void> createProfile(String name) async {
+    await FirebaseFirestore.instance.collection('profiles').add({
+      'name': name,
+    });
+    fetchProfiles(); // 프로필을 생성한 후 목록 갱신
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +45,35 @@ class _ProfilePageState extends State<ProfilePage> {
           '프로필 검색',
           style: TextStyle(color: Colors.black),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add, color: Colors.black),
+            onPressed: () {
+              // 프로필 추가 기능
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('새 프로필 생성'),
+                    content: TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(hintText: '이름 입력'),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          createProfile(_nameController.text);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('생성'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,10 +96,14 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onChanged: (query) {
                 setState(() {
-                  profiles = profiles
-                      .where((profile) =>
-                      profile.toLowerCase().contains(query.toLowerCase()))
-                      .toList();
+                  if (query.isEmpty) {
+                    fetchProfiles();
+                  } else {
+                    profiles = profiles
+                        .where((profile) =>
+                        profile.toLowerCase().contains(query.toLowerCase()))
+                        .toList();
+                  }
                 });
               },
             ),

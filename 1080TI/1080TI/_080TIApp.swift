@@ -1,14 +1,9 @@
-//
-//  _080TIApp.swift
-//  1080TI
-//
-//  Created by 신준형 on 8/17/24.
-//
-
 import SwiftUI
 
 @main
-struct _080TIApp: App {
+struct 1080TI: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
             ContentView()

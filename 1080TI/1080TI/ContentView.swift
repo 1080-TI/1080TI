@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  1080TI
 //
-//  Created by 신준형 on 8/17/24.
+//  Created by 신준형 on 8/19/24.
 //
 
 import SwiftUI

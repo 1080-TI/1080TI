@@ -14,7 +14,8 @@ dependencies:
   url_launcher: ^6.0.20
   http: ^0.13.3  # HTTP 패키지 추가
   html: ^0.15.0  # HTML 패키지 추가
-  firebase_core: "^2.5.0"
+  firebase_core: ^2.11.0
+  cloud_firestore: ^4.11.0
 
 dev_dependencies:
   flutter_test:

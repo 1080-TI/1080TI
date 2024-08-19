@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "_flutterfire_internals",
+      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.16",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "async",
       "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
@@ -24,6 +30,24 @@
       "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "cloud_firestore",
+      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/cloud_firestore-4.14.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "cloud_firestore_platform_interface",
+      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "cloud_firestore_web",
+      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "collection",
@@ -225,7 +249,7 @@
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.8",
+      "rootUri": "file:///Users/shinjunhyeong/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.9",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -290,7 +314,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-08-18T13:28:32.407644Z",
+  "generated": "2024-08-19T08:17:59.165262Z",
   "generator": "pub",
   "generatorVersion": "3.5.0",
   "flutterRoot": "file:///Users/shinjunhyeong/Downloads/flutter",
